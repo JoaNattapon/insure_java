@@ -3,26 +3,37 @@ package myproject.dhip_java.Entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
 @Table(name = "agent")
 public class AgentRegister {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
-    private Integer registNumber;
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false, length = 64)
     private String password;
+
+
+    private Integer registNumber;
     private Date registDate;
     private Boolean isAgent;
     private String titleName;
@@ -30,21 +41,25 @@ public class AgentRegister {
     private String lastname;
     private String address;
     private String phone;
-    private String email;
     private Integer licenseNumber;
     private Date expireDate;
 
-    @OneToMany(mappedBy = "agent")
-    private List<Insurance_Policy> insurance_policy;
+    @OneToMany(targetEntity = Customer.class, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinColumn(name = "agent_id", referencedColumnName = "id")
+    private List<Customer> customer;
 
     
 
     // Constructor
 
-    public AgentRegister(List<Insurance_Policy> insurance_policy) {
-        this.insurance_policy = insurance_policy;
+    public AgentRegister(List<Customer> customer) {
+        this.customer = customer;
     }
 
+    public AgentRegister() {
+
+    }
 
     public AgentRegister(Integer registNumber, String password, Date registDate, Boolean isAgent, String titleName, String firstname,
             String lastname, String address, String phone, String email, Integer licenseNumber, Date expireDate) {

@@ -5,15 +5,21 @@ import javax.persistence.GenerationType;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
 @Table(name = "package")
-public class Package {
+public class MyPackage {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -22,23 +28,37 @@ public class Package {
     private Integer price;
 
 
-    @OneToMany(mappedBy = "package")
-    private List<Insurance_Policy> insurance_Policies;
+    @OneToMany(targetEntity = Customer.class, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinColumn(name = "package_id", referencedColumnName = "id")
+    private List<Customer> customer;
 
 
 
     // Constructor
     
-    public Package(List<Insurance_Policy> insurance_Policies) {
-        this.insurance_Policies = insurance_Policies;
+    public MyPackage(List<Customer> customer) {
+        this.customer = customer;
     }
-
-    public Package(String detail, Integer price) {
+    
+    public MyPackage(String detail, Integer price) {
         this.detail = detail;
         this.price = price;
     }
 
+    public MyPackage() {
+
+    }
+
     // getter setter
+    
+    
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getDetail() {
         return detail;

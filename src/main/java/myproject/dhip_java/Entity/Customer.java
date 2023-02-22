@@ -2,14 +2,15 @@ package myproject.dhip_java.Entity;
 
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 
 
@@ -20,44 +21,41 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @DateTimeFormat
     private Date dateRegist;
-    private String nameTitle;
-    private String firstName;
-    private String lastName;
-    private String identityCard;
+
+    private String nametitle;
+    private String firstname;
+    private String lastname;
     private String address;
     private String email;
-    private Date startDate;
-    
-    
-    @OneToMany(mappedBy = "customer")
-    private List<Insurance_Policy> insurance_policy;
-    
+    private String identitycard;
+
+    @DateTimeFormat
+    private Date startdate;
+
+
     
     
     // Constructor
-    
-    public Customer(Date dateRegist, String nameTitle, String firstName, String lastName, String identityCard,
-            String address, String email, Date startDate, List<Insurance_Policy> insurance_policy) {
+
+    public Customer(Date dateRegist, String nametitle, String firstname, String lastname, String identitycard,
+            String address, String email, Date startdate) {
         this.dateRegist = dateRegist;
-        this.nameTitle = nameTitle;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.identityCard = identityCard;
+        this.nametitle = nametitle;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.identitycard = identitycard;
         this.address = address;
         this.email = email;
-        this.startDate = startDate;
-        this.insurance_policy = insurance_policy;
+        this.startdate = startdate;
+    }
+
+    public Customer() {
+
     }
 
     // getter setter
-
-    public List<Insurance_Policy> getInsurance_policy() {
-        return insurance_policy;
-    }
-    public void setInsurance_policy(List<Insurance_Policy> insurance_policy) {
-        this.insurance_policy = insurance_policy;
-    }
 
     public Long getId() {
         return id;
@@ -74,31 +72,31 @@ public class Customer {
     }
 
     public String getNameTitle() {
-        return nameTitle;
+        return nametitle;
     }
-    public void setNameTitle(String nameTitle) {
-        this.nameTitle = nameTitle;
+    public void setNameTitle(String nametitle) {
+        this.nametitle = nametitle;
     }
 
     public String getFirstName() {
-        return firstName;
+        return firstname;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getIdentityCard() {
-        return identityCard;
+        return identitycard;
     }
-    public void setIdentityCard(String identityCard) {
-        this.identityCard = identityCard;
+    public void setIdentityCard(String identitycard) {
+        this.identitycard = identitycard;
     }
 
     public String getAddress() {
@@ -116,9 +114,9 @@ public class Customer {
     }
 
     public Date getStartDate() {
-        return startDate;
+        return startdate;
     }
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStartDate(Date startdate) {
+        this.startdate = startdate;
     }
 }

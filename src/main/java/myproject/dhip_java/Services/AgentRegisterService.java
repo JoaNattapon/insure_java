@@ -14,11 +14,24 @@ public class AgentRegisterService {
     
     @Autowired AgentRegisterRepository agentRegisterRepository;
 
+    
     public AgentRegisterService() {
-
+        
     }
-
+    
     public List<AgentRegister> getAgents() {
         return agentRegisterRepository.findAll();
     }
+
+    
+    public String helloWorld() {
+        return "Hi final project";
+    }
+
+    public String addAgent(AgentRegister agent) {
+        agentRegisterRepository.save(agent);
+        return "Register agent successfully";
+    }
+    
+    
 }
