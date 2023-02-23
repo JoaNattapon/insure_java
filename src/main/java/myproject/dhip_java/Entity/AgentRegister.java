@@ -1,5 +1,6 @@
 package myproject.dhip_java.Entity;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -32,15 +34,20 @@ public class AgentRegister {
     @Column(nullable = false, length = 64)
     private String password;
 
+    
     private Integer registnumber;
+
     private Date registdate;
+
     private Boolean isagent;
     private String titlename;
     private String firstname;
     private String lastname;
     private String address;
     private String phone;
+    
     private Integer licensenumber;
+    
     private Date expiredate;
 
     @OneToMany(targetEntity = Customer.class, cascade = CascadeType.ALL)
@@ -112,8 +119,8 @@ public class AgentRegister {
     public Boolean getIsAgent() {
         return isagent;
     }
-    public void setIsAgent(Boolean isAgent) {
-        this.isagent = isAgent;
+    public void setIsAgent(Boolean isagent) {
+        this.isagent = isagent;
     }    
     
     public String getTitleName() {

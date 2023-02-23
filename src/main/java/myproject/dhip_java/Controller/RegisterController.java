@@ -46,14 +46,15 @@ public class RegisterController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    
     @CrossOrigin
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password) {
     
         
-        Optional<AgentRegister> user = agentRegisterRepository.findByEmail(email);
+        Optional<AgentRegister> user = Optional.ofNullable(agentRegisterRepository.findByEmail(email));
         
-        if (user.isPresent() && user.get().getEmail().equals(email)) {
+        if (user.isPresent() && user.get().getPassword().equals(password)) {
             return user.get().getId().toString();
         } else {
             return "Error";
