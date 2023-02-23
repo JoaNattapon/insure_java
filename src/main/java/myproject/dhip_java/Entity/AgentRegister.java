@@ -32,17 +32,16 @@ public class AgentRegister {
     @Column(nullable = false, length = 64)
     private String password;
 
-
-    private Integer registNumber;
-    private Date registDate;
-    private Boolean isAgent;
-    private String titleName;
+    private Integer registnumber;
+    private Date registdate;
+    private Boolean isagent;
+    private String titlename;
     private String firstname;
     private String lastname;
     private String address;
     private String phone;
-    private Integer licenseNumber;
-    private Date expireDate;
+    private Integer licensenumber;
+    private Date expiredate;
 
     @OneToMany(targetEntity = Customer.class, cascade = CascadeType.ALL)
     @JsonIgnore
@@ -61,22 +60,22 @@ public class AgentRegister {
 
     }
 
-    public AgentRegister(Integer registNumber, String password, Date registDate, Boolean isAgent, String titleName, String firstname,
-            String lastname, String address, String phone, String email, Integer licenseNumber, Date expireDate) {
+    public AgentRegister(Integer registnumber, String password, Date registdate, Boolean isagent, String titlename, String firstname,
+            String lastname, String address, String phone, String email, Integer licensenumber, Date expiredate) {
         
 
         this.password = password;
-        this.registNumber = registNumber;
-        this.registDate = registDate;
-        this.isAgent = isAgent;
-        this.titleName = titleName;
+        this.registnumber = registnumber;
+        this.registdate = registdate;
+        this.isagent = isagent;
+        this.titlename = titlename;
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
         this.phone = phone;
         this.email = email;
-        this.licenseNumber = licenseNumber;
-        this.expireDate = expireDate;
+        this.licensenumber = licensenumber;
+        this.expiredate = expiredate;
     }
 
 
@@ -97,31 +96,31 @@ public class AgentRegister {
     }
     
     public Integer getRegistNumber() {
-        return registNumber;
+        return registnumber;
     }
     public void setRegistNumber(Integer registNumber) {
-        this.registNumber = registNumber;
+        this.registnumber = registNumber;
     }
     
     public Date getRegistDate() {
-        return registDate;
+        return registdate;
     }
     public void setRegistDate(Date registDate) {
-        this.registDate = registDate;
+        this.registdate = registDate;
     }
 
     public Boolean getIsAgent() {
-        return isAgent;
+        return isagent;
     }
     public void setIsAgent(Boolean isAgent) {
-        this.isAgent = isAgent;
+        this.isagent = isAgent;
     }    
     
     public String getTitleName() {
-        return titleName;
+        return titlename;
     }
     public void setTitleName(String titleName) {
-        this.titleName = titleName;
+        this.titlename = titleName;
     }
 
     public String getFirstname() {
@@ -160,16 +159,16 @@ public class AgentRegister {
     }
 
     public Integer getLicenseNumber() {
-        return licenseNumber;
+        return licensenumber;
     }
     public void setLicenseNumber(Integer licenseNumber) {
-        this.licenseNumber = licenseNumber;
+        this.licensenumber = licenseNumber;
     }
 
     public Date getExpireDate() {
-        return expireDate;
+        return expiredate;
     }
     public void setExpireDate(Date expireDate) {
-        this.expireDate = expireDate;
+        this.expiredate = expireDate;
     }
 }

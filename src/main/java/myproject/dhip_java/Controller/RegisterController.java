@@ -1,7 +1,7 @@
 package myproject.dhip_java.Controller;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import myproject.dhip_java.Entity.AgentRegister;
@@ -37,11 +38,25 @@ public class RegisterController {
         return agentRegisterService.getAgents();
     }
 
-    // @CrossOrigin(origins = "http://localhost:8080/agent-register", allowCredentials = "true")
+    @CrossOrigin
     @PostMapping("/agent-register")
     public ResponseEntity <String> register(@RequestBody AgentRegister agentRegister) {
         
         agentRegisterService.addAgent(agentRegister);
         return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PostMapping("/login")
+    public String login(@RequestParam String email, @RequestParam String password) {
+    
+        
+        Optional<AgentRegister> user = agentRegisterRepository.findByEmail(email);
+        
+        if (user.isPresent() && user.get().getEmail().equals(email)) {
+            return user.get().getId().toString();
+        } else {
+            return "Error";
+        }
     }
 }
