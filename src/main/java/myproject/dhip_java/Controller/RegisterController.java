@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import myproject.dhip_java.Entity.AgentRegister;
+import myproject.dhip_java.Entity.Customer;
 import myproject.dhip_java.Repository.AgentRegisterRepository;
 import myproject.dhip_java.Services.AgentRegisterService;
 
@@ -53,7 +54,8 @@ public class RegisterController {
     
         
         Optional<AgentRegister> user = Optional.ofNullable(agentRegisterRepository.findByEmail(email));
-        
+        Customer a = new Customer();
+        a.setPackages(null);
         if (user.isPresent() && user.get().getPassword().equals(password)) {
             return user.get().getId().toString();
         } else {

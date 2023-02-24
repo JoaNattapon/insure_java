@@ -3,16 +3,9 @@ package myproject.dhip_java.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -28,18 +21,15 @@ public class MyPackage {
     private Integer price;
 
 
-    @OneToMany(targetEntity = Customer.class, cascade = CascadeType.ALL)
-    @JsonIgnore
-    @JoinColumn(name = "package_id", referencedColumnName = "id")
-    private List<Customer> customer;
+    // @OneToMany(targetEntity = Customer.class, cascade = CascadeType.ALL)
+    // @JsonIgnore
+    // @JoinColumn(name = "package_id", referencedColumnName = "id")
+    // private List<Customer> customer;
 
 
 
     // Constructor
     
-    public MyPackage(List<Customer> customer) {
-        this.customer = customer;
-    }
     
     public MyPackage(String detail, Integer price) {
         this.detail = detail;

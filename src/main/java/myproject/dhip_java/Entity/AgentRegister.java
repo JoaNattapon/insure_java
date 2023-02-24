@@ -1,23 +1,15 @@
 package myproject.dhip_java.Entity;
 
-import java.time.ZonedDateTime;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -50,18 +42,13 @@ public class AgentRegister {
     
     private Date expiredate;
 
-    @OneToMany(targetEntity = Customer.class, cascade = CascadeType.ALL)
-    @JsonIgnore
-    @JoinColumn(name = "agent_id", referencedColumnName = "id")
-    private List<Customer> customer;
-
-    
+    // @OneToMany(targetEntity = Customer.class, cascade = CascadeType.ALL)
+    // @JsonIgnore
+    // @JoinColumn(name = "agent_id", referencedColumnName = "id")
+    // private List<Customer> customer;
 
     // Constructor
 
-    public AgentRegister(List<Customer> customer) {
-        this.customer = customer;
-    }
 
     public AgentRegister() {
 

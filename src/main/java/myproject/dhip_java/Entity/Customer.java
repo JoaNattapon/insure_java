@@ -2,11 +2,15 @@ package myproject.dhip_java.Entity;
 
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,10 +38,21 @@ public class Customer {
     @DateTimeFormat
     private Date startdate;
 
+    @ManyToOne(targetEntity = AgentRegister.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "agent_id", referencedColumnName = "id")
+    private List<AgentRegister> agent;
 
+
+    @ManyToOne(targetEntity = MyPackage.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "package_id", referencedColumnName = "id")
+    private List<MyPackage> packages;
     
     
     // Constructor
+
+    public Customer(List<AgentRegister> agent) {
+        this.agent = agent;
+    }
 
     public Customer(Date dateRegist, String nametitle, String firstname, String lastname, String identitycard,
             String address, String email, Date startdate) {
@@ -118,5 +133,19 @@ public class Customer {
     }
     public void setStartDate(Date startdate) {
         this.startdate = startdate;
+    }
+
+    public List<AgentRegister> getAgent() {
+        return agent;
+    }
+    public void setAgent(List<AgentRegister> agent) {
+        this.agent = agent;
+    }
+
+    public List<MyPackage> getPackages() {
+        return packages;
+    }
+    public void setPackages(List<MyPackage> packages) {
+        this.packages = packages;
     }
 }
