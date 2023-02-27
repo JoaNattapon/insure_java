@@ -55,7 +55,7 @@ public class RegisterController {
         
         Optional<AgentRegister> user = Optional.ofNullable(agentRegisterRepository.findByEmail(email));
         Customer a = new Customer();
-        a.setPackages(null);
+        // a.setPackages(null);
         if (user.isPresent() && user.get().getPassword().equals(password)) {
             return user.get().getId().toString();
         } else {

@@ -2,9 +2,7 @@ package myproject.dhip_java.Entity;
 
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,21 +36,27 @@ public class Customer {
     @DateTimeFormat
     private Date startdate;
 
-    @ManyToOne(targetEntity = AgentRegister.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "agent_id", referencedColumnName = "id")
-    private List<AgentRegister> agent;
+    // @ManyToOne(targetEntity = AgentRegister.class, cascade = CascadeType.ALL)
+    // @JoinColumn(name = "agent_id", referencedColumnName = "id")
+    // private List<AgentRegister> agent;
 
 
-    @ManyToOne(targetEntity = MyPackage.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "package_id", referencedColumnName = "id")
-    private List<MyPackage> packages;
+    // @ManyToOne(targetEntity = MyPackage.class, cascade = CascadeType.ALL)
+    // @JoinColumn(name = "package_id", referencedColumnName = "id")
+    // private List<MyPackage> packages;
+    
+    @ManyToOne
+    @JoinColumn(name = "my_package_id")
+    private MyPackage myPackage;
+
+    @ManyToOne
+    @JoinColumn(name = "my_agent_id")
+    private AgentRegister agentRegister;
+    
     
     
     // Constructor
-
-    public Customer(List<AgentRegister> agent) {
-        this.agent = agent;
-    }
+    
 
     public Customer(Date dateRegist, String nametitle, String firstname, String lastname, String identitycard,
             String address, String email, Date startdate) {
@@ -135,17 +139,26 @@ public class Customer {
         this.startdate = startdate;
     }
 
-    public List<AgentRegister> getAgent() {
-        return agent;
+    public MyPackage getMyPackage() {
+        return myPackage;
     }
-    public void setAgent(List<AgentRegister> agent) {
-        this.agent = agent;
+    public void setMyPackage(MyPackage myPackage) {
+        this.myPackage = myPackage;
     }
 
-    public List<MyPackage> getPackages() {
-        return packages;
-    }
-    public void setPackages(List<MyPackage> packages) {
-        this.packages = packages;
-    }
+
+
+    // public List<AgentRegister> getAgent() {
+    //     return agent;
+    // }
+    // public void setAgent(List<AgentRegister> agent) {
+    //     this.agent = agent;
+    // }
+
+    // public List<MyPackage> getPackages() {
+    //     return packages;
+    // }
+    // public void setPackages(List<MyPackage> packages) {
+    //     this.packages = packages;
+    // }
 }

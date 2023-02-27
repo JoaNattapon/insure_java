@@ -2,12 +2,23 @@ package myproject.dhip_java.Entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+
+// Lombok implimentation on line 18-21
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "package")
 public class MyPackage {
@@ -15,52 +26,17 @@ public class MyPackage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @Column(name = "id")
+    public Integer id;
 
     private String detail;
     private Integer price;
 
 
-    // @OneToMany(targetEntity = Customer.class, cascade = CascadeType.ALL)
-    // @JsonIgnore
-    // @JoinColumn(name = "package_id", referencedColumnName = "id")
-    // private List<Customer> customer;
+    // NoArgConstructor && AllArgCons -> Lombok do it for us
 
-
-
-    // Constructor
+    // No getter setter -> Lombok do it for us
     
     
-    public MyPackage(String detail, Integer price) {
-        this.detail = detail;
-        this.price = price;
-    }
 
-    public MyPackage() {
-
-    }
-
-    // getter setter
-    
-    
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
 }
